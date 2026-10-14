@@ -1,0 +1,84 @@
+#include<iostream>
+#include<stack>
+using namespace std;
+ void printtoptobottom(stack<int> &st){
+       stack<int> hs;
+      while(st.size()!=0)
+    {
+        cout<<st.top()<<"  ";
+        
+        hs.push(st.top());
+        st.pop();
+    }
+      while(hs.size()!=0){
+        st.push(hs.top());
+        hs.pop();
+    }
+    cout<<endl;
+}
+void printbottomtotop(  stack<int> &st){
+      stack<int> hs;
+      while(st.size()!=0){
+        hs.push(st.top());
+        st.pop();
+      }
+      while(hs.size()!=0){
+        cout<<hs.top()<<" ";
+        st.push(hs.top());
+        hs.pop();
+      }
+      cout<<endl;
+}
+void pushatidx(int idx, int val,  stack<int> &st){
+      stack<int> hs;
+      while(st.size()>idx){
+        hs.push(st.top());
+        st.pop();
+      }
+      st.push(val);
+      while(hs.size()>0){
+        st.push(hs.top());
+        hs.pop();
+      }
+     
+}
+void popatidx( int idx, stack<int> &st){
+     stack<int> hs;
+      while(st.size()+1>idx){
+        hs.push(st.top());
+        st.pop();
+      }
+      st.pop();
+      while(hs.size()!=0){
+        st.push(hs.top());
+        hs.pop();
+      }
+     
+}
+void getatidx( int idx, stack<int> &st){
+    stack<int> hs;
+      while(st.size()-1>idx){
+        hs.push(st.top());
+        st.pop();
+      }
+      cout<<st.top()<<endl;
+      while(hs.size()!=0){
+        st.push(hs.top());
+        hs.pop();
+      }
+     
+}
+int main ()
+{
+    stack<int> st;
+    st.push(10);
+     st.push(20);
+      st.push(30);
+       st.push(40);
+        printtoptobottom(st); 
+    pushatidx(2,99,st);
+    printtoptobottom(st);
+  
+    getatidx(2,st);
+       printtoptobottom(st);
+}
